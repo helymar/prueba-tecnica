@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="row">
+      <div class="col-9">
+          <h1>Empleados</h1>
+      </div>
+      <div class="col-3">
+          <button type="button" class="btn btn-primary" (click)="addEmpleado()" data-bs-toggle="modal" data-bs-target="#areaModal">Agregar empleado</button>
+      </div>
+  <div class="row">
+      <div class="col-12">
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Nombres</th>
+                  <th scope="col">Apellidos</th>
+                  <th scope="col">Fecha de nacimiento</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Numero de documento</th>
+                  <th scope="col">Area</th>
+                  <th scope="col">Salario</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor='let empleado of empleados'>
+                      <td>{{empleado.nombres}}</td>
+                      <td>{{empleado.apellidos}}</td>
+                      <td>{{empleado.fechaNacimiento}}</td>
+                      <td>{{empleado.email}}</td>
+                      <td>{{empleado.numeroDocumento}}</td>
+                      <td>{{empleado.area}}</td>
+                      <td>{{empleado.salario}}</td>
+                      <td>{{empleado.estado}}</td>
+                      <td>
+                          <button type="button"  data-bs-toggle="modal" data-bs-target="#areaModal" (click)="editEmpleado(empleado.id)" class="btn btn-warning"><span class="material-symbols-outlined">edit</span></button>
+                          <button type="button" (click)="deleteEmpleado(empleado.id)" class="btn btn-danger"><span class="material-symbols-outlined">delete</span></button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  <!-- Button trigger modal -->
+
+
+<!-- Modal addArea-->
+<div class="modal fade" id="areaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Empleado</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form>
+      <div class="modal-body">
+          <div class="mb-3">
+              <label for="nombres" class="form-label">Nombres</label>
+              <input type="text" class="form-control" id="nombres" name="nombres" [maxLength]="50">
+          </div>
+          <div class="mb-3">
+              <label for="apellidos" class="form-label">Apellidos</label>
+              <input type="text" class="form-control" id="apellidos" name="apellidos" [maxLength]="50">
+          </div>
+          <div class="mb-3">
+              <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
+              <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento">
+          </div>
+          <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" [maxLength]="50">
+          </div>
+          <div class="mb-3">
+              <label for="numeroDocumento" class="form-label">Numero de documento</label>
+              <input type="text" class="form-control" id="numeroDocumento" name="numeroDocumento" [maxLength]="7">
+          </div>
+          <div class="mb-3">
+              <label for="area" class="form-label">Area</label>
+              <input type="text" class="form-control" id="area" name="area" [maxLength]="2">
+          </div>
+          <div class="mb-3">
+              <label for="salario" class="form-label">Salario</label>
+              <input type="number" class="form-control" id="salario" name="salario" pattern="^\d*(\.\d{0,2})?$" [maxLength]="10" step=".01"  >
+          </div>
+          <div class="mb-3">
+              <label for="estado" class="form-label">Estado</label>
+              <select name="estado" id="estado" class="form-control">
+                  <option value="Activo">Activo</option>
+                  <option value="Inactivo">Inactivo</option>
+              </select>
+          </div>         
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="save" (click)="saveEmpleado()" class="btn btn-primary">Guardar</button>
+        <button type="button" id="edit" (click)="saveEditEmpleado()" class="btn btn-warning" style="display: none;">Editar</button>
+      </div>
+  </form>
+    </div>
+  </div>
+</div>
+</div>

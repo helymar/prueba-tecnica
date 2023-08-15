@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <h1>Areas</h1>
+        </div>
+        <div class="col-3">
+            <button type="button" class="btn btn-primary" (click)="addArea()" data-bs-toggle="modal" data-bs-target="#areaModal">Agregar Area</button>
+        </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Líder</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let area of areas'>
+                        <td>{{area.codigo}}</td>
+                        <td>{{area.nombre}}</td>
+                        <td>{{area.lider}}</td>
+                        <td>{{area.estado}}</td>
+                        <td>
+                            <button type="button"  data-bs-toggle="modal" data-bs-target="#areaModal" (click)="editArea(area.id)" class="btn btn-warning"><span class="material-symbols-outlined">edit</span></button>
+                            <button type="button" (click)="deleteArea(area.id)" class="btn btn-danger"><span class="material-symbols-outlined">delete</span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+
+  
+  <!-- Modal addArea-->
+  <div class="modal fade" id="areaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Area</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="codigo" class="form-label">Codigo</label>
+                <input type="text" class="form-control" id="codigo" name="codigo"[maxLength]="2" >
+            </div>
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" [maxLength]="50">
+            </div>
+            <div class="mb-3">
+                <label for="lider" class="form-label">Lider</label>
+                <input type="number" class="form-control" id="lider" name="lider" [maxLength]="7" >
+            </div>
+            <div class="mb-3">
+                <label for="estado" class="form-label">Estado</label>
+                <select name="estado" id="estado" class="form-control">
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                </select>
+            </div>         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" id="save" (click)="saveArea()" class="btn btn-primary">Guardar</button>
+          <button type="button" id="edit" (click)="saveEditArea()" class="btn btn-warning" style="display: none;">Editar</button>
+
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+</div>
